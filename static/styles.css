@@ -1,0 +1,200 @@
+:root {
+    --gray: #7A7675;
+    --black: #17202A;
+    --orange: #E0711E;
+    --cream: #DAD8B6;
+    --blue: #154776;
+    --red: #B43C36;
+    --gold: #CEAA33;
+    --white: #FBFCFC;
+    --font: 'lexend';
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: linear-gradient(var(--blue), var(--gray), var(--blue));
+    background-size: contain;
+    font-family: sans-serif;
+}
+
+header {
+    padding: 0.3em 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5em;
+    width: 100vw;
+    background-image: linear-gradient(var(--blue), var(--black));
+}
+
+.content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+.logo {
+    width: 2.0em;
+    height: auto;
+    vertical-align: middle;
+    border-style: groove;
+    border-color: var(--gray);
+    padding: 3px;
+}
+
+h1 {
+    color: var(--red);
+    display: inline;
+    text-align: center;
+}
+
+
+nav {
+    text-align: end;
+    width: max-content;
+    padding-right: 1em;
+    display: flex;
+    gap: 0.5em;
+}
+
+li {
+    list-style: none;
+    border-style: outset;
+    border-color: var(--cream);
+    background-color: var(--black);
+    width: max-content;
+    padding: 0.2em;
+}
+
+
+
+a {
+    text-decoration: none;
+    text-shadow: 1px 2px var(--gray);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    width: max-content;
+}
+a:hover {
+    color: var(--cream);
+}
+
+h2, h3, p {
+    text-align: center;
+    color: var(--gold);
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+hr {
+    border-style: double;
+    border-color: var(--gray);
+    border-width: 4px;
+    width: 80%;
+    max-width: 800px;
+}
+
+form {
+    margin: 0 auto;
+    width: 75vw;
+    max-width: 500px;
+    min-width: 250px;
+}
+
+legend {
+    color: var(--red);
+}
+
+label {
+    display: block;
+    color: var(--cream);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input, textarea, select {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.inline {
+    display: inline;
+    vertical-align: middle;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 150px;
+    margin: 0.8em auto;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+/* begin styles for search form */
+/*/////////////////////////////*/
+
+.display {
+    text-align: left;
+    border-style: outset;
+    border-color: goldenrod;
+    margin: 1em auto;
+    width: max-content;
+    max-width: 800px;
+    min-width: max-content;
+}
+
+table {
+    border-style: double;
+    border-color: goldenrod;
+    padding: 1em 1em;
+    width: max-content;
+    max-width: 800px;
+    min-width: 200px;
+    background-image: linear-gradient(black, aliceblue, darkkhaki);
+}
+
+thead {
+    min-width: 80%;
+}
+
+th {
+    background-image: linear-gradient(black, grey, black);
+    border-style: outset;
+    border-color: goldenrod;
+    background-color: black;
+    color: aliceblue;
+}
+
+tr {
+    border-style: solid;
+    background-color: darkkhaki;
+}
+
+td {
+    font-weight: bold;
+    border-style: inset;
+    border-color: wheat;
+}
+
+form[name='query-form'] fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[name='queryBy'] {
+    margin-left: 50%;
+}
+
+#describeUnit {
+    font-size: 14px;
+    text-shadow: -1px 1px black;
+    color: aliceblue
+}

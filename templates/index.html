@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+<body>
+    {% block content %}
+    <h2 id="udtHead">Unit Data Tracker</h2>
+    <h3>Manage HVAC unit data collection, and reference.</h3>
+    <hr>
+    <p><em>enter unit data below to log unit data for site</em></p>
+    <form action="{{ url_for('index') }}" method="post">
+        <fieldset>
+            <legend>Site Info</legend>
+            <label for="site-id">Site ID: <input required name="site-id" id="site-id" type="text"></label>
+            <label for="site-name">Site Name: <input required name="site-name" id="site-name" type="text"></label>
+            <label for="coordinates">Lat/Long: <input name="coordinates" id="coordinates" type="text"></label>
+            <label for="owner">Owner: 
+                <select name="owner" id="owner">
+                    <option value="">(choose one...)</option>
+                    <option value="sba">SBA</option>
+                    <option value="american-tower">American Tower</option>
+                    <option value="crown-castle">Crown Castle</option>
+                    <option value="vertical-bridge">Vertical Bridge</option>
+                    <option value="vzw">VZW</option>
+                    <option value="sudden-link">Sudden Link</option>
+                </select>
+            </label>
+        </fieldset>
+        <br> 
+        <fieldset>
+            <legend>Unit Info</legend>
+            <label for="make">Manufacturer: <select name="make" id="make">
+                <option value="">(choose one...)</option>
+                <option value="marvair">MarvAir</option>
+                <option value="bard">Bard</option>
+                <option value="other">other...</option>
+            </select></label>
+            <label for="model">Model: <input name="model" id="model" type="text"></label>
+            <label for="serial">Serial: <input name="serial" id="serial" type="text"></label>
+            <label for="freon">Refrigerant Type: <input name="freon" id="freon" type="text"></label>
+            <label for="controller">Lead/Lag Model No: <input name="controller" id="controller" type="text"></label>
+            <label for="filters">Filter Size: <input id="filters" type="text" name="filters"></label>
+        </fieldset>
+        <input type="submit">
+    </form>
+    {% endblock %}
+
+</body>
+</html>

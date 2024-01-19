@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %} - UDT</title>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('index') }}"><img class="logo" src="/static/images/hvac.png" alt="hvac logo"><h1>UDT</h1></a>
+        
+        <nav>
+            <a href="{{ url_for('search') }}"><li>Search</li></a>
+            <a href="{{ url_for('parts_order_form') }}"><li>Order Parts</li></a>
+        </nav>
+    </header>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% for content in contents %}
+<tr>
+    <form action="{{ url_for('describe') }}" method="get">
+        <td><input type="submit" name="identifiedBy" value="{{ content.siteID }}"></input></td>
+        <td>{{ content.siteName }}</td>
+        <td>{{ content.coordinates }}</td>
+    </form>
+</tr>
+{% endfor %}
