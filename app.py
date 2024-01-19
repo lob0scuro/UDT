@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Blueprint
 from flask_sqlalchemy import SQLAlchemy
-from .config import *
+from config import *
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@localhost/udt"
