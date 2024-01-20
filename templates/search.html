@@ -2,31 +2,27 @@
 
 
 {% block title %}Search{% endblock %}
-</head>
-<body>
-    {% block content %}
-    <h3>Search site by Name or ID</h3>
-    <form name="query-form" action="{{ url_for('search') }}" method="get">
-        <fieldset>
-            <legend>Search By</legend>  
-            <p>site ID | site name | model or serial | filter size | refrigerant type | manufacturer | site owner </p>         
-            <label for="criteria"><input type="text" name="criteria" hx-get="/results" hx-trigger="keyup changed delay:500ms" hx-target="#output" id="criteria" placeholder="enter search query..."></label>
-        </fieldset>
-    </form>
-    <div class="display">
-        <table>
-            <thead>
-                <tr>
-                    <th>Site ID</th>
-                    <th>Site Name</th>
-                    <th>Coordinates</th>
-                </tr>
-            </thead>
-            <tbody id="output">
-                
-            </tbody>           
-        </table>
-    </div>
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+<h3>Search site by Name or ID</h3>
+<form name="query-form" action="{{ url_for('search') }}" method="get">
+    <fieldset>
+        <legend>Search By</legend>  
+        <p>site ID | site name | model or serial | filter size | refrigerant type | manufacturer | site owner </p>         
+        <label for="criteria"><input type="text" name="criteria" hx-get="/results" hx-trigger="keyup changed delay:500ms" hx-target="#output" id="criteria" placeholder="enter search query..."></label>
+    </fieldset>
+</form>
+<div class="display">
+    <table>
+        <thead>
+            <tr>
+                <th>Site ID</th>
+                <th>Site Name</th>
+                <th>Coordinates</th>
+            </tr>
+        </thead>
+        <tbody id="output">
+            
+        </tbody>           
+    </table>
+</div>
+{% endblock %}

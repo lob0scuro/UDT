@@ -76,9 +76,16 @@ def parts_order_form():
 
 @app.route("/describe")
 def describe():
-    q = request.form.get('identifiedBy')
+    q = request.args.get('identifiedBy')
     data = Sites.query.get(q)
     return render_template('describe.html', data=data)
+
+
+@app.route("/edit-site-details")
+def edit(obj):
+    data = Sites.query.get(obj)
+    return render_template('site-editor.html', data=data)
+
 
 
 
