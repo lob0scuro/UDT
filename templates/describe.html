@@ -5,12 +5,11 @@
 {% block content %}
 
 <h2>{{ data.siteName }}</h2>
-<!-- <div class="siteDescription"></div> -->
 <form action="{{ url_for('describe') }}" class="editorForm">
     <fieldset>
         <legend>Site Details</legend>
     
-        <h3><strong>ID:</strong> {{ data.siteID }}</h3>
+        <h3><strong>ID:</strong> <input type="hidden" name="obj" value="{{ data.siteID }}"> {{ data.siteID }}</h3>
         <h3><strong>Name:</strong> {{ data.siteName }}</h3>
         <h3><strong>Owner:</strong> {{ data.owner }}</h3>
         <h3><strong>Coordinates:</strong> {{ data.coordinates }}</h3>
@@ -28,8 +27,7 @@
        
     <div class="navi-mini-text">
     <a href="{{ url_for('search') }}">Go Back</a> or 
-    <a href="{{ url_for('edit', obj={{ data.siteID }}) }}">Edit</a> site details.
+    <a href="{{ url_for('edit') }}">Edit</a> site details.
     </div>
 </form>
-<!-- </div> -->
 {% endblock %}

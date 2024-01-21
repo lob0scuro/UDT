@@ -220,6 +220,27 @@ input[name='queryBy'] {
 
 }
 
+.editorForm2 {
+    border-style: double;
+    width: max-content;
+    padding: 1em 3em;
+    background-color: var(--black);
+    margin: 5em auto 2em auto;
+} 
+
+.editorForm2 h3 {
+    color: var(--white);
+    background-color: #7A7675;
+    text-align: justify;
+
+}
+
+.editorForm2 strong {
+    all: unset;
+}
+
+
+
 strong {
     text-decoration: underline;
     background-color: var(--black);

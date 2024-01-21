@@ -69,9 +69,7 @@ def results():
     return render_template('search_results.html', contents=contents)
     
 
-@app.route("/parts_order_form")
-def parts_order_form():
-    return render_template('parts.html')
+
 
 
 @app.route("/describe")
@@ -81,11 +79,17 @@ def describe():
     return render_template('describe.html', data=data)
 
 
-@app.route("/edit-site-details")
-def edit(obj):
-    data = Sites.query.get(obj)
+@app.route("/edit")
+def edit():
+    o = request.args.get('obj')
+    data = Sites.query.get(o)
     return render_template('site-editor.html', data=data)
 
+
+
+@app.route("/parts_order_form")
+def parts_order_form():
+    return render_template('parts.html')
 
 
 
