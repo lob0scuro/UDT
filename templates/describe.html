@@ -27,7 +27,7 @@
        
     <div class="navi-mini-text">
     <a href="{{ url_for('search') }}">Go Back</a> or 
-    <a href="{{ url_for('edit') }}">Edit</a> site details.
+    <a href="{{ url_for('edit', obj=data.siteID) }}">Edit</a> site details.
     </div>
 </form>
 {% endblock %}

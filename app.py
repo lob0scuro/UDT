@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from config import *
 
@@ -49,7 +49,6 @@ def index():
             db.session.commit()
 
                 
-
     return render_template("index.html")
 
 @app.route("/search")
@@ -79,11 +78,41 @@ def describe():
     return render_template('describe.html', data=data)
 
 
-@app.route("/edit")
-def edit():
-    o = request.args.get('obj')
-    data = Sites.query.get(o)
-    return render_template('site-editor.html', data=data)
+@app.route("/edit/<obj>", methods=['GET', 'POST'])
+def edit(obj):
+    if request.method == 'POST':
+        id = request.form.get('id')
+        name = request.form.get('name')
+        owner = request.form.get('owner')
+        coordinates = request.form.get('coordinates')
+        parish = request.form.get('parish')
+        manufacturer = request.form.get('manufacturer')
+        model = request.form.get('model')
+        serial = request.form.get('serial')
+        refrigerant = request.form.get('refrigerant')
+        controller = request.form.get('controller')
+        filter = request.form.get('filter')
+        q = Sites.query.get(obj)
+        
+        try:
+            q.siteID = id
+            q.siteName = name
+            q.owner = owner
+            q.coordinates = coordinates
+            q.parish = parish
+            q.manufacturer = manufacturer
+            q.model = model
+            q.serial = serial
+            q.refrigerant = refrigerant
+            q.controller = controller
+            q.filter = filter
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error: {e}")
+        finally:
+            db.session.commit()
+        
+    return render_template('site-editor.html', data=q)
 
 
 
