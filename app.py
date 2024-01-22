@@ -98,18 +98,17 @@ def edit(obj):
                
         
         try:
-            q = Sites()
-            q.siteID = id
-            q.siteName = name
-            q.owner = owner
-            q.coordinates = coordinates
-            q.parish = parish
-            q.manufacturer = manufacturer
-            q.model = model
-            q.serial = serial
-            q.refrigerant = refrigerant
-            q.controller = controller
-            q.filters = filter
+            data.siteID = id
+            data.siteName = name
+            data.owner = owner
+            data.coordinates = coordinates
+            data.parish = parish
+            data.manufacturer = manufacturer
+            data.model = model
+            data.serial = serial
+            data.refrigerant = refrigerant
+            data.controller = controller
+            data.filters = filter
         except Exception as e:
             db.session.rollback()
             print(f"Error: {e}")
