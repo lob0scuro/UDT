@@ -235,7 +235,7 @@ input[name='queryBy'] {
 
 }
 
-.editorForm2 strong {
+.editorForm2 input[type='text'] {
     all: unset;
 }
 

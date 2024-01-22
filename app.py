@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from config import *
@@ -82,9 +82,9 @@ def describe():
 
 @app.route("/edit/<obj>", methods=['GET', 'POST'])
 def edit(obj):
-    data = None
+    data = db.session.query(Sites).get(obj)
     if request.method == 'POST':
-        id = request.form.get('id')
+        id = request.args.get('id')
         name = request.form.get('name')
         owner = request.form.get('owner')
         coordinates = request.form.get('coordinates')
@@ -95,13 +95,10 @@ def edit(obj):
         refrigerant = request.form.get('refrigerant')
         controller = request.form.get('controller')
         filter = request.form.get('filter')
-        q = Sites()
-        result = select(Sites).where(Sites.siteID == obj)
-        data = db.session.execute(result).fetchone()
-        for d in data:
-            print(d)
+               
         
         try:
+            q = Sites()
             q.siteID = id
             q.siteName = name
             q.owner = owner
@@ -118,6 +115,7 @@ def edit(obj):
             print(f"Error: {e}")
         finally:
             db.session.commit()
+            redirect(url_for('index'))
         
     return render_template('site-editor.html', data=data)
 
