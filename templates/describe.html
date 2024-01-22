@@ -5,7 +5,7 @@
 {% block content %}
 
 <h2>{{ data.siteName }}</h2>
-<form action="{{ url_for('describe') }}" class="editorForm">
+<form action="{{ url_for('describe', id=data.siteID) }}" class="editorForm">
     <fieldset>
         <legend>Site Details</legend>
         <h3><strong>ID:</strong> <input type="hidden" name="obj" value="{{ data.siteID }}"> {{ data.siteID }}</h3>

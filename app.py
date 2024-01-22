@@ -3,11 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from config import *
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@localhost/udt"
 db = SQLAlchemy(app)
 app.app_context().push()
 
+
+# site master table
 class Sites(db.Model):
     siteID = db.Column(db.String(25), nullable=False, unique=True, primary_key=True)
     siteName = db.Column(db.String(50), nullable=False)
@@ -20,9 +23,25 @@ class Sites(db.Model):
     refrigerant = db.Column(db.String(50))
     controller = db.Column(db.String(50))
     filters = db.Column(db.String(50))
+    # parts_ordered = db.relationship('Parts_Ordered', backref='parts', lazy=True)
     
     def __repr__(self):
         return f"Site: {self.siteID} {self.siteName}"
+    
+    
+# parts order table
+# class Parts_Order(db.Model):
+#     id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
+#     siteAssoc = db.Column(db.String(50), db.ForeignKey('sites.siteID'), nullable=False)
+#     order_contents = db.Column(db.Text, nullable=False)
+#     date_ordered = db.Column(db.DateTime, nullable=False)
+#     job_no = db.Column(db.String(10))
+#     po = db.Column(db.String(10))
+    
+#     def __repr__(self):
+#         return f"Order: {self.id}/ for site({self.siteAssoc})"
+    
+
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -73,10 +92,9 @@ def results():
 
 
 
-@app.route("/describe")
-def describe():
-    q = request.args.get('identifiedBy')
-    data = Sites.query.get(q)
+@app.route("/describe/<id>")
+def describe(id):
+    data = db.session.query(Sites).get(id)
     return render_template('describe.html', data=data)
 
 
@@ -84,7 +102,7 @@ def describe():
 def edit(obj):
     data = db.session.query(Sites).get(obj)
     if request.method == 'POST':
-        id = request.args.get('id')
+        id = request.form.get('id')
         name = request.form.get('name')
         owner = request.form.get('owner')
         coordinates = request.form.get('coordinates')
@@ -94,7 +112,7 @@ def edit(obj):
         serial = request.form.get('serial')
         refrigerant = request.form.get('refrigerant')
         controller = request.form.get('controller')
-        filter = request.form.get('filter')
+        filter = request.form.get('filters')
                
         
         try:
@@ -114,15 +132,23 @@ def edit(obj):
             print(f"Error: {e}")
         finally:
             db.session.commit()
-            redirect(url_for('index'))
+            return redirect(url_for("update_successful", id=data.siteID))
         
     return render_template('site-editor.html', data=data)
+
+
+@app.route("/update_successful/<id>")
+def update_successful(id):
+    data = db.session.query(Sites).get(id)
+    return render_template("update_successful.html", data=data)
 
 
 
 @app.route("/parts_order_form")
 def parts_order_form():
-    return render_template('parts.html')
+    # not ready - state = 0
+    # edit/ready = 1
+    return render_template('parts.html', state=1)
 
 
 

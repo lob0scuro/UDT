@@ -8,20 +8,20 @@
 <form action="{{ url_for('edit', obj=data.siteID) }}" class="editorForm2" method="post">
     <fieldset>
         <legend>Site Details</legend>
-        <h3><strong>ID:</strong><input type="text" name="id" placeholder="{{ data.siteID}}"></h3>
-        <h3><strong>Name:</strong><input type="text" name="name" placeholder="{{ data.siteName }}"></h3>
-        <h3><strong>Owner:</strong><input type="text" name="owner" placeholder="{{ data.owner }}"></h3>
-        <h3><strong>Coordinates:</strong><input type="text" name="coordinates" placeholder="{{ data.coordinates }}"></h3>
-        <h3><strong>Parish:</strong><input type="text" name="parish" placeholder="{{ data.parish }}"></h3>
+        <h3><strong>ID:</strong><input type="text" name="id" value="{{ data.siteID}}" autofocus></h3>
+        <h3><strong>Name:</strong><input type="text" name="name" value="{{ data.siteName }}"></h3>
+        <h3><strong>Owner:</strong><input type="text" name="owner" value="{{ data.owner }}"></h3>
+        <h3><strong>Coordinates:</strong><input type="text" name="coordinates" value="{{ data.coordinates }}"></h3>
+        <h3><strong>Parish:</strong><input type="text" name="parish" value="{{ data.parish }}"></h3>
     </fieldset>
     <fieldset>
         <legend>Unit Details</legend>
-        <h3><strong>Manufacturer:</strong><input type="text" name="manufacturer" placeholder="{{ data.manufacturer }}"></h3>
-        <h3><strong>Model No:</strong><input type="text" name="model" placeholder="{{ data.model }}"></h3>
-        <h3><strong>Serial No:</strong><input type="text" name="serial" placeholder="{{ data.serial }}"></h3>
-        <h3><strong>Refrigerant:</strong><input type="text" name="refrigerant" placeholder="{{ data.refrigerant }}"></h3>
-        <h3><strong>Controller:</strong><input type="text" name="controller" placeholder="{{ data.controller }}"></h3>
-        <h3><strong>Filter:</strong><input type="text" name="filters" placeholder="{{ data.filters }}"></h3>
+        <h3><strong>Manufacturer:</strong><input type="text" name="manufacturer" value="{{ data.manufacturer }}"></h3>
+        <h3><strong>Model No:</strong><input type="text" name="model" value="{{ data.model }}"></h3>
+        <h3><strong>Serial No:</strong><input type="text" name="serial" value="{{ data.serial }}"></h3>
+        <h3><strong>Refrigerant:</strong><input type="text" name="refrigerant" value="{{ data.refrigerant }}"></h3>
+        <h3><strong>Controller:</strong><input type="text" name="controller" value="{{ data.controller }}"></h3>
+        <h3><strong>Filter:</strong><input type="text" name="filters" value="{{ data.filters }}"></h3>
     </fieldset>
     <input type="submit">
 </form>

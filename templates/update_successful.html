@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<h3>Site {{ data.siteID }}</h3> 
+
+<div class="updatedSiteView">
+    <ul>
+        <li><strong>Site ID:</strong> {{ data.siteID }}</li>
+        <li><strong>Site Name:</strong> {{ data.siteName }}</li>
+        <li><strong>Owner:</strong> {{ data.Owner }}</li>
+        <li><strong>Coordinates:</strong> {{ data.coordinates }}</li>
+        <li><strong>Parish:</strong> {{ data.parish }}</li>
+        <li><strong>Manufacturer:</strong> {{ data.manufacturer }}</li>
+        <li><strong>Model No:</strong> {{ data.model }}</li>
+        <li><strong>Serial:</strong> {{ data.serial }}</li>
+        <li><strong>Refrigerant:</strong> {{ data.refrigerant }}</li>
+        <li><strong>Controller:</strong> {{ data.controller }}</li>
+        <li><strong>Filters:</strong> {{ data.filters }}</li>
+    </ul>
+    <p>Updated successfully</p>
+    <a href="{{ url_for('index') }}"><button>Home</button></a>
+</div>
+
+
+
+{% endblock %}

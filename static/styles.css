@@ -269,3 +269,44 @@ strong {
     text-shadow: -2px 1px var(--cream);
 }
 
+/* begin successful edit view styles */
+/*//////////////////////////////////*/
+
+.updatedSiteView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.updatedSiteView li {
+    background-color: var(--black);
+    font-size: 1.1em;
+    color: greenyellow;
+}
+
+.updatedSiteView button {
+    background-color: var(--red);
+    color: var(--white);
+    font-size: 1.2em;
+}
+
+.updatedSiteView strong {
+    color: var(--cream);
+}
+
+
+
+/* begin parts styles */
+/*///////////////////*/
+
+#hangInThereBaby {
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+}
