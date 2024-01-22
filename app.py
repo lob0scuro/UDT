@@ -5,7 +5,7 @@ from config import *
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@localhost/udt"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/udt"
 db = SQLAlchemy(app)
 app.app_context().push()
 
@@ -32,11 +32,13 @@ class Sites(db.Model):
 # parts order table
 # class Parts_Order(db.Model):
 #     id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
-#     siteAssoc = db.Column(db.String(50), db.ForeignKey('sites.siteID'), nullable=False)
-#     order_contents = db.Column(db.Text, nullable=False)
-#     date_ordered = db.Column(db.DateTime, nullable=False)
+#     part_name = db.Column(db.String(50), nullable=False)
+#     part_model = db.Column(db.String(50))
+#     quantity_ordered = db.Column(db.Integer)
 #     job_no = db.Column(db.String(10))
+#     date_ordered = db.Column(db.DateTime, nullable=False)
 #     po = db.Column(db.String(10))
+#     siteAssoc = db.Column(db.String(50), db.ForeignKey('sites.siteID'), nullable=False)
     
 #     def __repr__(self):
 #         return f"Order: {self.id}/ for site({self.siteAssoc})"
@@ -46,6 +48,7 @@ class Sites(db.Model):
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    status = 1
     if request.method == 'POST':
         site_name = request.form.get('site-name')
         site_id = request.form.get('site-id')
@@ -69,8 +72,17 @@ def index():
         finally:
             db.session.commit()
 
-                
-    return render_template("index.html")
+    if status:  
+        return render_template('index.html')
+    else:
+        return redirect(url_for("login"))
+
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+
 
 @app.route("/search")
 def search():

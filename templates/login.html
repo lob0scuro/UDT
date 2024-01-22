@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h3>Welcome to the Unit Data Tracker</h3>
+<p>Please login below</p>
+<form action="#">
+    <label for="username">Username: <input type="text" id="username" name="username"></label>
+    <label for="password">Password: <input type="text" id="password" name="password"></label>
+    <input type="submit" value="Login">
+</form>
+
+<p>Don't have an account? <a href="#">Click Here</a> to register an account</p>
+
+{% endblock %}
