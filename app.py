@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select
 from config import *
 
 app = Flask(__name__)
@@ -12,6 +13,7 @@ class Sites(db.Model):
     siteName = db.Column(db.String(50), nullable=False)
     coordinates = db.Column(db.String(50))
     owner = db.Column(db.String(50))
+    parish = db.Column(db.String(50))
     manufacturer = db.Column(db.String(50))
     model = db.Column(db.String(50))
     serial = db.Column(db.String(50))
@@ -80,6 +82,7 @@ def describe():
 
 @app.route("/edit/<obj>", methods=['GET', 'POST'])
 def edit(obj):
+    data = None
     if request.method == 'POST':
         id = request.form.get('id')
         name = request.form.get('name')
@@ -92,7 +95,11 @@ def edit(obj):
         refrigerant = request.form.get('refrigerant')
         controller = request.form.get('controller')
         filter = request.form.get('filter')
-        q = Sites.query.get(obj)
+        q = Sites()
+        result = select(Sites).where(Sites.siteID == obj)
+        data = db.session.execute(result).fetchone()
+        for d in data:
+            print(d)
         
         try:
             q.siteID = id
@@ -105,14 +112,14 @@ def edit(obj):
             q.serial = serial
             q.refrigerant = refrigerant
             q.controller = controller
-            q.filter = filter
+            q.filters = filter
         except Exception as e:
             db.session.rollback()
             print(f"Error: {e}")
         finally:
             db.session.commit()
         
-    return render_template('site-editor.html', data=q)
+    return render_template('site-editor.html', data=data)
 
 
 
