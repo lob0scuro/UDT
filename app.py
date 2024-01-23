@@ -5,6 +5,7 @@ from admin.second import second
 from config import *
 
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/udt"
 db = SQLAlchemy(app)
