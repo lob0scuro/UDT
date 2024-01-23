@@ -11,7 +11,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASS
 db = SQLAlchemy(app)
 app.app_context().push()
 
-app.register_blueprint(second, url_prefix="/test")
+app.register_blueprint(second, url_prefix="/")
 
 # site master table
 class Sites(db.Model):
@@ -47,7 +47,7 @@ class Sites(db.Model):
 #         return f"Order: {self.id}/ for site({self.siteAssoc})"
     
 
-@app.route("/", methods=['GET', 'POST'])
+@second.route("/", methods=['GET', 'POST'])
 def index():
     status = 1
     if request.method == 'POST':
