@@ -10,17 +10,15 @@
 
 {% else %}
 <h3>Parts Order Form</h3>
-<p>enter part needed for job</p>
-<form action="{{ url_for('parts_order_form') }}" class="editorForm">
+
+<form action="{{ url_for('parts_order_form') }}" class="partsOrderForm">
     <feildset>
+        <legend>Parts Needed</legend>
         <label for="part_name">Part Name: <input type="text" id="part_name" name="part_name"></label>
-        <label for="part_model">Part Model No: <input type="text" id="part_model" name="part_name"></label>
-        <label for="part_serial">Part Serial No: <input type="text" id="part_serial" name="part_name"></label>
-        <label for="part_amount">Quantity: <input type="number" id="part_amount" name="part_name"></label>
-        <label for="job_no">Job No: <input type="text" id="job_no" name="job_no"></label>
-        <label for="po">P.O. No: <input type="text" id="po" name="po"></label>
+        <label for="part_name">Part Model No: <input type="text" id="part_model" name="part_name"></label>
+        <label for="part_name">Part Serial No: <input type="text" id="part_serial" name="part_name"></label>
+        <label for="part_name">Quantity: <input type="number" id="part_amount" name="part_name"></label>
     </feildset>
-    <input type="submit">
 </form>
 
 {% endif %}
