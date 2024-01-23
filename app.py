@@ -1,11 +1,25 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
+from flask_wtf.csrf import CSRFProtect
+from flask_bcrypt import Bcrypt
+from flask_login import login_user, current_user, logout_user, login_required, UserMixin, LoginManager, login_manager
 from config import *
 
-
 app = Flask(__name__)
+# testing for auth login and account creation.
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+bcrypt = Bcrypt(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/udt"
+app.config["SECRET_KEY"] = SECRET_KEY
+csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 app.app_context().push()
 
@@ -28,6 +42,18 @@ class Sites(db.Model):
     def __repr__(self):
         return f"Site: {self.siteID} {self.siteName}"
     
+#creating model for users
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Columns(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"{self.username}: {self.email}"
+    
+    
+## parts model for ordering
     
 # parts order table
 # class Parts_Order(db.Model):
