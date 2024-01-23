@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
-from admin.second import second
 from config import *
 
+test = "testing"
 
 
 app = Flask(__name__)
@@ -11,7 +11,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASS
 db = SQLAlchemy(app)
 app.app_context().push()
 
-app.register_blueprint(second, url_prefix="/")
 
 # site master table
 class Sites(db.Model):
@@ -47,7 +46,9 @@ class Sites(db.Model):
 #         return f"Order: {self.id}/ for site({self.siteAssoc})"
     
 
-@second.route("/", methods=['GET', 'POST'])
+
+
+@app.route("/", methods=['GET', 'POST'])
 def index():
     status = 1
     if request.method == 'POST':
@@ -77,8 +78,6 @@ def index():
         return render_template('index.html')
     else:
         return redirect(url_for("login"))
-
-
 
 
 @app.route("/login")
