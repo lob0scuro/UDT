@@ -4,7 +4,6 @@ from sqlalchemy import select
 from config import *
 
 
-test = "test"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/udt"
@@ -13,24 +12,31 @@ app.app_context().push()
 
 
 # site master table
-class Sites(db.Model):
-    siteID = db.Column(db.String(25), nullable=False, unique=True, primary_key=True)
-    siteName = db.Column(db.String(50), nullable=False)
+    
+
+class SiteMaster(db.Model):
+    site_id = db.Column(db.String(25), nullable=False, unique=True, primary_key=True)
+    site_name = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(125))
     coordinates = db.Column(db.String(50))
-    owner = db.Column(db.String(50))
-    parish = db.Column(db.String(50))
-    manufacturer = db.Column(db.String(50))
-    model = db.Column(db.String(50))
-    serial = db.Column(db.String(50))
-    refrigerant = db.Column(db.String(50))
+    type_of = db.Column(db.String(50))
+    tower = db.Column(db.String(50))
+    unit_make = db.Column(db.String(50))
+    unit_model = db.Column(db.String(50))
+    unit_serial = db.Column(db.String(50))
+    freon = db.Column(db.String(50))
     controller = db.Column(db.String(50))
     filters = db.Column(db.String(50))
-    # parts_ordered = db.relationship('Parts_Ordered', backref='parts', lazy=True)
-    
-    def __repr__(self):
-        return f"Site: {self.siteID} {self.siteName}"
-    
-    
+
+
+
+
+
+
+
+
+
+
 # parts order table
 # class Parts_Order(db.Model):
 #     id = db.Column(db.Integer, nullable=False, unique=True, primary_key=True)
@@ -40,7 +46,7 @@ class Sites(db.Model):
 #     job_no = db.Column(db.String(10))
 #     date_ordered = db.Column(db.DateTime, nullable=False)
 #     po = db.Column(db.String(10))
-#     siteAssoc = db.Column(db.String(50), db.ForeignKey('sites.siteID'), nullable=False)
+#     siteAssoc = db.Column(db.String(50), db.ForeignKey('SiteMaster.site_id'), nullable=False)
     
 #     def __repr__(self):
 #         return f"Order: {self.id}/ for site({self.siteAssoc})"
@@ -64,7 +70,7 @@ def index():
         controller = request.form.get('controller')
         filters = request.form.get('filters')
 
-        siteEntry = Sites(siteID=site_id, siteName=site_name, coordinates=coordinates, owner=owner, manufacturer=manufacturer, model=model, serial=serial, refrigerant=refrigerant, controller=controller, filters=filters)
+        siteEntry = SiteMaster(site_id=site_id, site_name=site_name, coordinates=coordinates, owner=owner, manufacturer=manufacturer, model=model, serial=serial, refrigerant=refrigerant, controller=controller, filters=filters)
         
         try:
             db.session.add(siteEntry)
@@ -88,7 +94,7 @@ def login():
 
 @app.route("/search")
 def search():
-    contents = Sites.query.all()
+    contents = SiteMaster.query.all()
     return render_template('search.html', contents=contents)
 
 
@@ -97,9 +103,9 @@ def search():
 def results():
     criteria = request.args.get('criteria') 
     if criteria:
-        contents = Sites.query.filter(Sites.siteID.icontains(criteria) | Sites.siteName.icontains(criteria) | Sites.coordinates.icontains(criteria) | Sites.owner.icontains(criteria)).limit(25).all() 
+        contents = SiteMaster.query.filter(SiteMaster.site_id.icontains(criteria) | SiteMaster.site_name.icontains(criteria) | SiteMaster.coordinates.icontains(criteria) | SiteMaster.tower.icontains(criteria)).limit(25).all() 
     else:
-        contents = Sites.query.all()
+        contents = SiteMaster.query.all()
     return render_template('search_results.html', contents=contents)
     
 
@@ -108,13 +114,13 @@ def results():
 
 @app.route("/describe/<id>")
 def describe(id):
-    data = db.session.query(Sites).get(id)
+    data = db.session.query(SiteMaster).get(id)
     return render_template('describe.html', data=data)
 
 
 @app.route("/edit/<obj>", methods=['GET', 'POST'])
 def edit(obj):
-    data = db.session.query(Sites).get(obj)
+    data = db.session.query(SiteMaster).get(obj)
     if request.method == 'POST':
         id = request.form.get('id')
         name = request.form.get('name')
@@ -130,8 +136,8 @@ def edit(obj):
                
         
         try:
-            data.siteID = id
-            data.siteName = name
+            data.site_id = id
+            data.site_name = name
             data.owner = owner
             data.coordinates = coordinates
             data.parish = parish
@@ -146,14 +152,14 @@ def edit(obj):
             print(f"Error: {e}")
         finally:
             db.session.commit()
-            return redirect(url_for("update_successful", id=data.siteID))
+            return redirect(url_for("update_successful", id=data.site_id))
         
     return render_template('site-editor.html', data=data)
 
 
 @app.route("/update_successful/<id>")
 def update_successful(id):
-    data = db.session.query(Sites).get(id)
+    data = db.session.query(SiteMaster).get(id)
     return render_template("update_successful.html", data=data)
 
 
