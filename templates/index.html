@@ -2,68 +2,83 @@
 
 {% block title %}Home{% endblock %}
 <body>
+    
     {% block content %}
-    <h1 class="text-center" id="udtHead">Unit Data Tracker</h1>
-    <h3 class="text-body-secondary text-center">Manage HVAC unit data collection, and reference.</h3>
-    <hr>
-    <p class="text-center text-danger"><em>enter unit data below to log unit data for site</em></p>
-    <div class="container-fluid">
-    <form class="form-horizontal" action="{{ url_for('index') }}" method="post">
-        <div class="form-group">
-            <legend>Site Info</legend>
-            <div class="mb-3">
-                <label class="form-label" for="site-id">Site ID: <input class="form-control" required name="site-id" id="site-id" type="text"></label>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center" id="udtHead">Unit Data Tracker</h1>
+            <h3 class="text-body-secondary text-center">Manage HVAC unit data collection, and reference.</h3>
+            <hr>
+            
+            <p class="text-center text-danger"><em>enter unit data below to log unit data for site</em></p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="container-fluid">
+                    
+                    <form class="form-horizontal" action="{{ url_for('index') }}" method="post">
+                        <div class="form-group">
+                            <legend>Site Info</legend>
+                            <div class="mb-3">
+                                <label class="form-label" for="site-id">Site ID: <input class="form-control" required name="site-id" id="site-id" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="site-name">Site Name: <input class="form-control" required name="site-name" id="site-name" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="coordinates">Lat/Long: <input class="form-control-sm" name="coordinates" id="coordinates" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="owner">Owner: 
+                                    <select class="form-control" name="owner" id="owner">
+                                        <option value="">(choose one...)</option>
+                                        <option value="sba">SBA</option>
+                                        <option value="american-tower">American Tower</option>
+                                        <option value="crown-castle">Crown Castle</option>
+                                        <option value="vertical-bridge">Vertical Bridge</option>
+                                        <option value="vzw">VZW</option>
+                                        <option value="sudden-link">Sudden Link</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <br> 
+                        <div class="form-group">
+                            <legend>Unit Info</legend>
+                            <div class="mb-3">
+                                <label class="form-label" for="make">Manufacturer: <select class="form-control-sm" name="make" id="make">
+                                    <option value="">(choose one...)</option>
+                                    <option value="marvair">MarvAir</option>
+                                    <option value="bard">Bard</option>
+                                    <option value="other">other...</option>
+                                </select></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="model">Model: <input class="form-control-sm" name="model" id="model" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="serial">Serial: <input class="form-control-sm" name="serial" id="serial" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="freon">Refrigerant Type: <input class="form-control-sm" name="freon" id="freon" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="controller">Lead/Lag Model No: <input class="form-control-sm" name="controller" id="controller" type="text"></label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="filters">Filter Size: <input class="form-controlsm" id="filters" type="text" name="filters"></label>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary text-center" type="submit">
+                    </form>
+                    </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="site-name">Site Name: <input class="form-control" required name="site-name" id="site-name" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="coordinates">Lat/Long: <input class="form-control-sm" name="coordinates" id="coordinates" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="owner">Owner: 
-                    <select class="form-control" name="owner" id="owner">
-                        <option value="">(choose one...)</option>
-                        <option value="sba">SBA</option>
-                        <option value="american-tower">American Tower</option>
-                        <option value="crown-castle">Crown Castle</option>
-                        <option value="vertical-bridge">Vertical Bridge</option>
-                        <option value="vzw">VZW</option>
-                        <option value="sudden-link">Sudden Link</option>
-                    </select>
-                </label>
+            <div class="col">
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1iVn8SOtoD0SwNcKPWJknpFG1xACP9wM&ehbc=2E312F" width="500" height="350"></iframe>
             </div>
         </div>
-        <br> 
-        <div class="form-group">
-            <legend>Unit Info</legend>
-            <div class="mb-3">
-                <label class="form-label" for="make">Manufacturer: <select class="form-control-sm" name="make" id="make">
-                    <option value="">(choose one...)</option>
-                    <option value="marvair">MarvAir</option>
-                    <option value="bard">Bard</option>
-                    <option value="other">other...</option>
-                </select></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="model">Model: <input class="form-control-sm" name="model" id="model" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="serial">Serial: <input class="form-control-sm" name="serial" id="serial" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="freon">Refrigerant Type: <input class="form-control-sm" name="freon" id="freon" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="controller">Lead/Lag Model No: <input class="form-control-sm" name="controller" id="controller" type="text"></label>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="filters">Filter Size: <input class="form-controlsm" id="filters" type="text" name="filters"></label>
-            </div>
-        </div>
-        <input class="btn btn-primary text-center" type="submit">
-    </form>
     </div>
+        
     {% endblock %}
 
 </body>
