@@ -5,28 +5,28 @@
 {% block content %}
 
 <h2>{{ data.siteName }}</h2>
-<form action="{{ url_for('describe', id=data.siteID) }}" class="editorForm">
+<form action="{{ url_for('describe', id=data.site_id) }}" class="editorForm">
     <fieldset>
         <legend>Site Details</legend>
-        <h3><strong>ID:</strong> <input type="hidden" name="obj" value="{{ data.siteID }}"> {{ data.siteID }}</h3>
-        <h3><strong>Name:</strong> {{ data.siteName }}</h3>
-        <h3><strong>Owner:</strong> {{ data.owner }}</h3>
+        <h3><strong>ID:</strong> <input type="hidden" name="obj" value="{{ data.site_id }}"> {{ data.site_id }}</h3>
+        <h3><strong>Name:</strong> {{ data.site_name }}</h3>
+        <h3><strong>Owner:</strong> {{ data.tower }}</h3>
         <h3><strong>Coordinates:</strong> {{ data.coordinates }}</h3>
         <h3><strong>Parish:</strong> {{ data.parish }}</h3>
     </fieldset>
     <fieldset>
         <legend>Unit Details</legend>
-        <h3><strong>Manufacturer:</strong> {{ data.manufacturer }}</h3>
-        <h3><strong>Model No:</strong> {{ data.model }}</h3>
-        <h3><strong>Serial No:</strong> {{ data.serial }}</h3>
-        <h3><strong>Refrigerant:</strong> {{ data.refrigerant }}</h3>
+        <h3><strong>Manufacturer:</strong> {{ data.unit_make }}</h3>
+        <h3><strong>Model No:</strong> {{ data.unit_model }}</h3>
+        <h3><strong>Serial No:</strong> {{ data.unit_serial }}</h3>
+        <h3><strong>Refrigerant:</strong> {{ data.freon }}</h3>
         <h3><strong>Controller:</strong> {{ data.controller }}</h3>
         <h3><strong>Filter:</strong> {{ data.filters }}</h3>
     </fieldset>
        
     <div class="navi-mini-text">
     <a href="{{ url_for('search') }}">Go Back</a> or 
-    <a href="{{ url_for('edit', obj=data.siteID) }}">Edit</a> site details.
+    <a href="{{ url_for('edit', obj=data.site_id) }}">Edit</a> site details.
     </div>
 </form>
 {% endblock %}

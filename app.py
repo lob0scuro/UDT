@@ -18,6 +18,9 @@ class SiteMaster(db.Model):
     site_id = db.Column(db.String(25), nullable=False, unique=True, primary_key=True)
     site_name = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(125))
+    city = db.Column(db.String(50))
+    state = db.Column(db.String(5))
+    parish = db.Column(db.String(25))
     coordinates = db.Column(db.String(50))
     type_of = db.Column(db.String(50))
     tower = db.Column(db.String(50))
@@ -138,13 +141,13 @@ def edit(obj):
         try:
             data.site_id = id
             data.site_name = name
-            data.owner = owner
+            data.tower = owner
             data.coordinates = coordinates
             data.parish = parish
-            data.manufacturer = manufacturer
-            data.model = model
-            data.serial = serial
-            data.refrigerant = refrigerant
+            data.unit_make = manufacturer
+            data.unit_model = model
+            data.unit_serial = serial
+            data.freon = refrigerant
             data.controller = controller
             data.filters = filter
         except Exception as e:

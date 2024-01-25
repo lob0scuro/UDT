@@ -5,21 +5,21 @@
 {% block content %}
 
 <h2>{{ data.siteName }}</h2>
-<form action="{{ url_for('edit', obj=data.siteID) }}" class="editorForm2" method="post">
+<form action="{{ url_for('edit', obj=data.site_id) }}" class="editorForm2" method="post">
     <fieldset>
         <legend>Site Details</legend>
-        <h3><strong>ID:</strong><input type="text" name="id" value="{{ data.siteID}}" autofocus></h3>
-        <h3><strong>Name:</strong><input type="text" name="name" value="{{ data.siteName }}"></h3>
-        <h3><strong>Owner:</strong><input type="text" name="owner" value="{{ data.owner }}"></h3>
+        <h3><strong>ID:</strong><input type="text" name="id" value="{{ data.site_id}}" autofocus></h3>
+        <h3><strong>Name:</strong><input type="text" name="name" value="{{ data.site_name }}"></h3>
+        <h3><strong>Owner:</strong><input type="text" name="owner" value="{{ data.tower }}"></h3>
         <h3><strong>Coordinates:</strong><input type="text" name="coordinates" value="{{ data.coordinates }}"></h3>
         <h3><strong>Parish:</strong><input type="text" name="parish" value="{{ data.parish }}"></h3>
     </fieldset>
     <fieldset>
         <legend>Unit Details</legend>
-        <h3><strong>Manufacturer:</strong><input type="text" name="manufacturer" value="{{ data.manufacturer }}"></h3>
-        <h3><strong>Model No:</strong><input type="text" name="model" value="{{ data.model }}"></h3>
-        <h3><strong>Serial No:</strong><input type="text" name="serial" value="{{ data.serial }}"></h3>
-        <h3><strong>Refrigerant:</strong><input type="text" name="refrigerant" value="{{ data.refrigerant }}"></h3>
+        <h3><strong>Manufacturer:</strong><input type="text" name="manufacturer" value="{{ data.unit_make }}"></h3>
+        <h3><strong>Model No:</strong><input type="text" name="model" value="{{ data.unit_model }}"></h3>
+        <h3><strong>Serial No:</strong><input type="text" name="serial" value="{{ data.unit_serial }}"></h3>
+        <h3><strong>Refrigerant:</strong><input type="text" name="refrigerant" value="{{ data.freon }}"></h3>
         <h3><strong>Controller:</strong><input type="text" name="controller" value="{{ data.controller }}"></h3>
         <h3><strong>Filter:</strong><input type="text" name="filters" value="{{ data.filters }}"></h3>
     </fieldset>
