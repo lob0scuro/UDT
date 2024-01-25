@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<ul class="dataDisplay">
+    <li><strong>Site ID:</strong> {{ data.site_id }}</li>
+    <li><strong>Site Name:</strong> {{ data.site_name }}</li>
+    <li><strong>Coordinates:</strong> {{ data.coordinates }}</li>
+    <li><strong>Parish:</strong> {{ data.parish }}</li>
+    <li><strong>Tower:</strong> {{ data.tower }}</li>
+    <li><strong>Manufacturer:</strong> {{ data.unit_make }}</li>
+    <li><strong>Model No:</strong> {{ data.unit_model }}</li>
+    <li><strong>Serial:</strong> {{ data.unit_serial }}</li>
+    <li><strong>Refrigerant:</strong> {{ data.freon }}</li>
+    <li><strong>Controller:</strong> {{ data.controller }}</li>
+    <li><strong>Filters:</strong> {{ data.filters }}</li>
+</ul>
+
+{% endblock %}
