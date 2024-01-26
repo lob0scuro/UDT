@@ -9,15 +9,14 @@
     <title>{% block title %}{% endblock %} - UDT</title>
 </head>
 <body>
-    <header>
-        <a href="{{ url_for('index') }}"><img class="logo" src="/static/images/hvac.png" alt="hvac logo"><h1>UDT</h1></a>
-        
-        <nav>
-            <a href="{{ url_for('search') }}"><li>Search</li></a>
-            <a href="{{ url_for('parts_order_form') }}"><li>Order Parts</li></a>
-        </nav>
-    </header>
-    <div class="content">
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}"><img class="logo" style="width: 25px;" src="/static/images/hvac.png" alt="hvac logo">UDT</a>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('search') }}">Search</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('parts_order_form') }}">Order Parts</a></li>
+        </div>
+    </nav>
+    <div class="content container bg-secondary">
         {% block content %} {% endblock %}
     </div>
 </body>
